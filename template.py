@@ -30,8 +30,8 @@ list_of_files = [
 
 
 for filepath in list_of_files:
-    filepath = Path(filepath)
-    filedir, filename = os.path.split(filepath)
+    filepath = Path(filepath)   # to ceate windows path
+    filedir, filename = os.path.split(filepath)  #to split dir & filename
 
 
     if filedir !="":

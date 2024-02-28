@@ -1,0 +1,18 @@
+tensorflow
+pandas
+numpy
+dvc  #tracking tool
+matplotlib
+seaborn
+scikit-learn
+notebook
+python-box==6.0.2
+pyYAML  #to read yaml file
+tqdm #to see progress
+ensure==1.0.2 
+joblib
+types-PyYAML
+scipy
+Flask
+Flask-Cors
+-e .  # it will install packages locally and no need to install it every time
