@@ -2,9 +2,9 @@
 import os
 import urllib.request as request
 import zipfile as zf
-from src.ChickenClassf import  logger
-from src.ChickenClassf.utils.common import get_size
-from src.ChickenClassf.entity.config_entity import DataIngestionConfig
+from ChickenClassf import  logger
+from ChickenClassf.utils.common import get_size
+from ChickenClassf.entity.config_entity import DataIngestionConfig
 from pathlib import Path
 
 class DataIngestion:

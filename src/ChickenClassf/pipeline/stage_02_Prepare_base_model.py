@@ -1,9 +1,8 @@
-from src.ChickenClassf.config.configuration import ConfigManager
-from src.ChickenClassf.entity.config_entity  import PrepareBaseModelConfig
-from src.ChickenClassf.components.prepare_base_model import PrepareBaseModel
-from src.ChickenClassf import logger
+from ChickenClassf.config.configuration import ConfigManager
+from ChickenClassf.components.prepare_base_model import PrepareBaseModel
+from ChickenClassf import logger
 
-stage ="PPREPARE_BASE_MODEL"
+STAGE_NAME ="PPREPARE_BASE_MODEL"
 
 class PrepareBaseModelTrainingPipeline:
     def __init__(self):
@@ -21,5 +20,14 @@ class PrepareBaseModelTrainingPipeline:
             raise e
 
 
+if __name__ == "__main__":
 
-       
+    try: 
+        logger.info(f"*******************")
+        logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+        prepare_base_model = PrepareBaseModelTrainingPipeline()
+        prepare_base_model.BaseModelPipeline()
+        logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+    except Exception as e:
+            logger.exception(e)
+            raise e

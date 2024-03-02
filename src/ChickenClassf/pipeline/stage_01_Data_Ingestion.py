@@ -1,7 +1,8 @@
-from src.ChickenClassf.config.configuration import ConfigManager
-from src.ChickenClassf.entity.config_entity  import DataIngestionConfig
-from src.ChickenClassf.components.data_ingestion import DataIngestion
-from src.ChickenClassf import logger
+from ChickenClassf.config.configuration import ConfigManager
+from ChickenClassf.entity.config_entity  import DataIngestionConfig
+from ChickenClassf.components.data_ingestion import DataIngestion
+from ChickenClassf import logger
+
 
 stage ="DATA_INGESTION_STAGE"
 
@@ -18,15 +19,15 @@ class DataIngetionPipeline:
             data_ingestion.unzip_file()
         
         
-# if __name__ == "__main__":
-#     try:
+if __name__ == "__main__":
+    try:
         
-#         logger.info(f">>>>> STAGE 01{stage} <<<<<<")
+        logger.info(f">>>>> STAGE 01{stage} <<<<<<")
 
-#         data_ingestion_pipeline_obj = DataIngetionPipeline()
-#         data_ingestion_pipeline_obj.DataPipeline()
-#         logger.info(f" Data ingestion pipeline is done!")
+        data_ingestion_pipeline_obj = DataIngetionPipeline()
+        data_ingestion_pipeline_obj.DataPipeline()
+        logger.info(f" Data ingestion pipeline is done!")
         
-#     except Exception as e:
-#         logger.exception(e)
-#         raise e
+    except Exception as e:
+        logger.exception(e)
+        raise e

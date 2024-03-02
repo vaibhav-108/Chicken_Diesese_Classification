@@ -1,0 +1,59 @@
+
+stages:  
+  data_ingestion:
+    cmd: python src/ChickenClassf/pipeline/stage_01_Data_Ingestion.py   
+    deps:
+      - src/ChickenClassf/pipeline/stage_01_Data_Ingestion.py  
+      - config/config.yaml   #other dependent files
+    outs:
+      - artifacts/data_ingestion/Chicken-fecal-images
+
+
+
+
+  prepare_base_models:
+    cmd: python src/ChickenClassf/pipeline/stage_02_Prepare_base_model.py #exact file path
+    deps: 
+        - src/ChickenClassf/pipeline/stage_02_Prepare_base_model.py #always insert file itself as dependency
+        - config/config.yaml
+    params:               #all required parameters
+      - IMAGE_SIZE
+      - INCLUDE_TOP
+      - CLASSES
+      - WEIGHTS
+      - LEARNING_RATE
+    outs:
+      - artifacts/prepare_base_model
+
+  training:
+    cmd: python src/ChickenClassf/pipeline/stage_03_Prepare_training.py
+    deps:
+      - src/ChickenClassf/pipeline/stage_03_Prepare_training.py
+      - src/ChickenClassf/components/prepare_callbacks.py
+      - config/config.yaml
+      - artifacts/data_ingestion/Chicken-fecal-images
+      - artifacts/prepare_base_model
+    params:
+      - IMAGE_SIZE
+      - EPOCHS
+      - BATCH_SIZE
+      - AUGMENTATION
+    outs:
+      - artifacts/training/model.keras
+
+
+  evaluation:
+    cmd: python src/ChickenClassf/pipeline/stage_04_model_evaluation.py
+    deps:
+      - src/ChickenClassf/pipeline/stage_04_model_evaluation.py
+      - config/config.yaml
+      - artifacts/data_ingestion/Chicken-fecal-images
+      - artifacts/training/model.keras
+    params:
+      - IMAGE_SIZE
+      - BATCH_SIZE
+    metrics:
+    - scores.json:
+        cache: false
+      
+        

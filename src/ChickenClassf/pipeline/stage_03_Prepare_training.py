@@ -1,10 +1,10 @@
-from src.ChickenClassf.config.configuration import ConfigManager
-from src.ChickenClassf.components.prepare_callbacks import PrepareCallbacks
-from src.ChickenClassf.components.prepare_training import Training
-from src.ChickenClassf import logger
+from  ChickenClassf.config.configuration import ConfigManager
+from  ChickenClassf.components.prepare_callbacks import PrepareCallbacks
+from  ChickenClassf.components.prepare_training import Training
+from  ChickenClassf import logger
 
 
-stage ="TRAINING_MODEL"
+STAGE_NAME ="TRAINING_MODEL"
 
 class PrepareTrainingPipeline:
     def __init__(self):
@@ -29,3 +29,14 @@ class PrepareTrainingPipeline:
             
         except Exception as e:
             raise e
+        
+if __name__ == "__main__":
+    try: 
+        logger.info(f"*******************")
+        logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+        training_model = PrepareTrainingPipeline()
+        training_model.TrainingPipeline()
+        logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+    except Exception as e:
+        logger.exception(e)
+        raise e

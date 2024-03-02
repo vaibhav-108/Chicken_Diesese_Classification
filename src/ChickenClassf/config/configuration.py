@@ -1,10 +1,11 @@
 import os
-from src.ChickenClassf.constants import *
-from src.ChickenClassf.utils.common import read_yaml, create_directories
-from src.ChickenClassf.entity.config_entity import (DataIngestionConfig,
+from ChickenClassf.constants import *
+from ChickenClassf.utils.common import read_yaml, create_directories
+from ChickenClassf.entity.config_entity import (DataIngestionConfig,
                                                     PrepareBaseModelConfig,
                                                     PrepareCallbacksConfig,
-                                                    TrainingConfig)
+                                                    TrainingConfig,
+                                                    ModelevalConfg)
 
 
 
@@ -89,3 +90,14 @@ class ConfigManager:
         return training_config
         
     
+    def get_validation_config(self)-> ModelevalConfg:
+        train_path = self.config.training
+        eval_config = ModelevalConfg(
+            path_of_model = train_path.trained_model_path,
+            training_data = os.path.join(self.config.data_ingestion.unzip_dir, "Chicken-fecal-images"),
+            all_params = self.params,
+            params_image_size = self.params.IMAGE_SIZE,
+            params_batch_size = self.params.BATCH_SIZE
+        )
+    
+        return eval_config
