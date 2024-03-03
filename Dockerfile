@@ -1,5 +1,5 @@
 FROM python:3.12.2-slim
-RUN apt update -y && install awscli -y  
+RUN apt update -y && apt install awscli -y  
 
 WORKDIR /app
 
