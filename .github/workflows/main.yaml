@@ -16,6 +16,11 @@ jobs:
     name: Continuous Integration
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
       - name: Checkout Code
         uses: actions/checkout@v3
 
@@ -30,6 +35,11 @@ jobs:
     needs: integration
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
       - name: Checkout Code
         uses: actions/checkout@v3
 
