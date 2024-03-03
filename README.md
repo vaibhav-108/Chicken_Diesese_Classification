@@ -12,3 +12,8 @@
 7. Update the pipeline 
 8. Update the main.py
 9. Update the dvc.yaml
+
+
+
+## ECR URI
+        URI 336061871144.dkr.ecr.us-east-2.amazonaws.com/chickendiesesclass
